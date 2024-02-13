@@ -3,6 +3,8 @@ import styles from "./Main.module.css"
 import Map from "./Map"
 import main from "../images/Clima.jpg"
 function Main() {
+
+  
     const [weather, setWeather] = useState(null);
     const [city, setCity] = useState('Thessaloniki');
     const apiKey = process.env.REACT_APP_API_KEY; 
