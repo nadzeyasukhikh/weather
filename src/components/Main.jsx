@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Main.module.css"
 import Map from "./Map"
+import main from "../images/Clima.jpg"
 function Main() {
     const [weather, setWeather] = useState(null);
     const [city, setCity] = useState('Thessaloniki');
@@ -71,31 +72,39 @@ function Main() {
         const date = new Date(timestamp * 1000);
         return `${date.getHours()}:${("0" + date.getMinutes()).slice(-2)}`;
     };
+
+    const backgroundStyle = {
+      backgroundImage: `url(${main})`,
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+    };
+
     return (
      
-        <div className={styles.mainDiv}>
+        <div style={backgroundStyle} className={styles.mainDiv}>
           <div className={styles.time}>
                 <p className={styles.timeStyle}>{timeString}</p>
                 <p className={styles.timeStyle}>{dateString}</p>
             </div>
            <form onSubmit={handleSubmit}>
-        <div className="search-box">
+        <div className={styles.searchBox}>
           <input
             type="text"
             value={city}
             onChange={handleCityChange}
             placeholder="Enter city..."
-            className="search-bar"
+            className={styles.searchBar}
           />
           <button type="submit">get weather</button>
         </div>
       </form>
             {weather && (
-                <div className="weather-box">
+                <div className={styles.weatherBox}>
                     <h2>{weather.name}</h2>
                     <img src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`} alt="Weather icon" />
-                    <p>Coordinates: Latitude {weather.coord.lat}, Longitude {weather.coord.lon}</p>
+                    
                     <p>Temperature: {Math.round(weather.main.temp)}°C</p>
+                    <p>Feels like: {Math.round(weather.main.feels_like)}°C</p>
                     <p>Weather: {weather.weather[0].description}</p>
                     <p>Humidity: {weather.main.humidity}%</p>
                     <p>Pressure: {weather.main.pressure} hPa</p>

@@ -1,0 +1,9 @@
+.mapContainer {
+    width: 100vw;
+    height: 50vh;
+    max-width: 800px;
+    max-height: 400px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(7, 9, 112, 0.555);
+  }
